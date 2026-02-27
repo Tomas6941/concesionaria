@@ -16,12 +16,12 @@ app.secret_key = "super_secret_key"
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'tg4263340@gmail.com'
-app.config['MAIL_PASSWORD'] = 'juevtyizrmxkfplg'
-app.config['MAIL_DEFAULT_SENDER'] = 'tg4263340@gmail.com'
+app.config['MAIL_USERNAME'] = '' #Tu correo
+app.config['MAIL_PASSWORD'] = '' # Tu clave de apliación
+app.config['MAIL_DEFAULT_SENDER'] = '' #Tu correo
 
 # Serializer para tokens
-app.config['SECURITY_PASSWORD_SALT'] = '16082025'
+app.config['SECURITY_PASSWORD_SALT'] = '' #
 
 mail = Mail(app)
 serializer = URLSafeTimedSerializer(app.secret_key)
@@ -83,7 +83,7 @@ def load_user(user_id):
         return User(user["id"], user["nombre"], user["email"], user["password"], user["foto"], user["email_verified"])
     return None
 
-# Función para enviar emails de forma asíncrona
+# Función para enviar emails
 def send_async_email(app, msg):
     with app.app_context():
         mail.send(msg)
@@ -212,9 +212,9 @@ def registro():
             else:
                 flash("Cuenta creada pero hubo un problema al enviar el email de verificación. Contacta con soporte.", "warning")
             
-            # ✅ Evitar login automático
+            # Evitar login automático
             logout_user()
-            print(f"✅ Usuario {email} registrado correctamente - Email NO verificado")
+            print(f"Usuario {email} registrado correctamente - Email NO verificado")
             return redirect(url_for("login", registered="true"))
             
         except Exception as e:
@@ -245,10 +245,10 @@ def verify_email(token):
         conn.execute("UPDATE users SET email_verified = 1, verification_token = NULL WHERE email = ?", 
                     (email,))
         conn.commit()
-        print(f"✅ Email {email} verificado correctamente")
+        print(f"Email {email} verificado correctamente")
         flash("¡Email verificado correctamente! Ya puedes iniciar sesión.", "success")
     else:
-        print(f"❌ Token inválido para email: {email}")
+        print(f"Token inválido para email: {email}")
         flash("Usuario no encontrado o ya verificado.", "danger")
     
     conn.close()
@@ -277,12 +277,12 @@ def login():
         
         # VERIFICACIÓN ESTRICTA - SOLO SI email_verified = 1
         if user["email_verified"] != 1:
-            print(f"❌ Intento de login con email NO verificado: {email}")
+            print(f"Intento de login con email NO verificado: {email}")
             flash("Por favor, verifica tu email antes de iniciar sesión. Revisa tu bandeja de entrada o spam.", "warning")
             return redirect(url_for("login"))
 
         # Si llegamos aquí, todo está bien
-        print(f"✅ Login exitoso para usuario verificado: {email}")
+        print(f"Login exitoso para usuario verificado: {email}")
         user_obj = User(user["id"], user["nombre"], user["email"], user["password"], user["foto"], user["email_verified"])
         login_user(user_obj)
         return redirect(url_for("home"))
