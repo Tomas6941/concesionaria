@@ -1,0 +1,42 @@
+{%extends "layout.html" %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<h1>Acerca de Nosotros</h1>
+<p>En 2012, en una ciudad mediana donde el transporte público era ineficiente y el tráfico empeoraba cada año, dos amigos mecánicos decidieron dejar de trabajar para terceros y crear algo propio. Uno sabía de motores; el otro, de ventas. No tenían capital fuerte, pero sí reputación y clientes fieles.
+Empezaron en un galpón alquilado con capacidad para seis motos. La idea inicial no era vender volumen, sino confianza: motos revisadas a fondo, garantía real y servicio postventa obligatorio. Mientras otras concesionarias competían por precio, ellos competían por transparencia. Publicaban el historial técnico de cada unidad y permitían pruebas sin presión de compra.
+El primer año fue inestable. Vendieron poco, pero casi todos los clientes volvieron para mantenimiento. Ese flujo constante les dio liquidez. Reinvirtieron todo: mejoraron el taller, cerraron acuerdos con dos marcas emergentes y empezaron a ofrecer financiación directa con análisis propio de riesgo.
+El punto de quiebre llegó cuando una empresa de mensajería local necesitaba renovar 20 motos. Cumplieron en tiempo y con soporte técnico permanente. Ese contrato les dio visibilidad y volumen.
+Cinco años después, pasaron de un galpón a un local propio con showroom, taller certificado y área de accesorios. La concesionaria se consolidó con una identidad clara: motos confiables, servicio técnico fuerte y relación directa con el cliente.
+No crecieron por moda ni por campañas agresivas. Crecieron porque entendieron algo simple: en el mundo de las motos, la confianza vale más que el descuento.
+</p>
+
+<h1>Equipo de trabajo</h1>
+<div class="team">
+    <div class="member1">
+        <h2>Tomas Gonzalez</h2>
+        <h3>Jefe</h3>
+        <p>Tomas es el fundador y jefe de la concesionaria. Con más de 15 años de experiencia en el mundo de las motos, Tomas es un apasionado por los motores y la mecánica. Su visión y liderazgo han sido fundamentales para el crecimiento y éxito de la concesionaria.</p>
+    </div>
+    <div class="member2">
+        <h2>María López</h2>
+        <h3>Sub Jefa</h3>
+        <p>María es la sub jefa de la concesionaria. Con una sólida formación en administración y ventas, María se encarga de la gestión diaria del negocio y de mantener una excelente relación con los clientes. Su dedicación y atención al detalle son clave para el funcionamiento eficiente de la concesionaria.</p>
+    </div>
+    <div class="member3">
+        <h2>Carlos Rodríguez</h2>
+        <h3>Mecánico</h3>
+        <p>Carlos es el mecánico principal de la concesionaria. Con más de 10 años de experiencia en mantenimiento y reparación de motos, Carlos es conocido por su habilidad técnica y su compromiso con la calidad del servicio.</p>
+    </div>
+    <div class="member4">
+        <h2>Laura Martínez</h2>
+        <h3>Vendedora</h3>
+        <p>Laura es la vendedora principal de la concesionaria. Con una amplia experiencia en ventas y atención al cliente, Laura se encarga de asesorar a los clientes en la elección de la moto perfecta para sus necesidades. Su amabilidad y conocimiento del producto hacen que cada cliente se sienta valorado.</p>
+    </div>
+</div>
+
+{% endblock %}

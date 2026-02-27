@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Mi App{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+    {% block page_css %}{% endblock %}
+</head>
+<body class="layout">
+
+    {% include "navbar.html" %}
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            © {{ year }} El Gato. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/fredoka-one@latest/latin-400-normal.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/fontsource/fonts/fredoka-one@latest/latin-400-normal.woff') format('woff');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fredoka One', sans-serif;
+  background-color: #eef2ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(10px, 3vw, 20px);
+}
+
+h2 {
+  color: #432dd7;
+  margin-top: clamp(30px, 8vw, 60px);
+  margin-bottom: clamp(15px, 4vw, 20px);
+  font-size: clamp(1.6rem, 5vw, 1.8rem);
+  text-align: center;
+  padding: 0 15px;
+}
+
+form {
+  width: 100%;
+  max-width: 420px;
+  padding: clamp(20px, 5vw, 30px);
+  background: #e0e7ff;
+  border-radius: 12px;
+  border: 2px solid #c6d2ff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: clamp(10px, 2.5vw, 12px);
+  margin-bottom: clamp(12px, 3vw, 18px);
+  border: 1px solid #c6d2ff;
+  border-radius: 6px;
+  font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+  transition: 0.3s ease;
+  width: 100%;
+  font-family: 'Fredoka One', sans-serif;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4f39f6;
+  box-shadow: 0 0 0 2px rgba(79, 57, 246, 0.2);
+}
+
+button {
+  padding: clamp(10px, 2.5vw, 12px);
+  background: #4f39f6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 5px;
+}
+
+button:hover {
+  background: #432dd7;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+a {
+  margin-top: clamp(15px, 4vw, 20px);
+  color: #312c85;
+  text-decoration: none;
+  font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+  text-align: center;
+  padding: 0 15px;
+}
+
+a:hover {
+  color: #4f39f6;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  form {
+    padding: 20px;
+  }
+  
+  br {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  h2 {
+    font-size: 1.4rem;
+    margin-top: 20px;
+  }
+  
+  form {
+    padding: 15px;
+  }
+  
+  input, button {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+  
+  a {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  form {
+    max-width: 380px;
+  }
+  
+  h2 {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  body {
+    padding: 10px;
+  }
+  
+  h2 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  
+  form {
+    padding: 15px;
+  }
+  
+  input {
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+  
+  button {
+    padding: 8px;
+  }
+}

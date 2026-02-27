@@ -1,0 +1,247 @@
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/fredoka-one@latest/latin-400-normal.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/fontsource/fonts/fredoka-one@latest/latin-400-normal.woff') format('woff');
+}
+
+body {
+    font-family: 'Fredoka One', sans-serif;
+    background-color: #eef2ff;
+}
+
+h1 {
+    color: #312c85;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h2 {
+    color: #432dd7;
+    text-align: center;
+    margin-top: 30px;
+}
+
+h3 {
+    color: #312c85;
+    text-align: center;
+    margin-top: 50px;
+}
+
+p {
+    color: #7c86ff;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.accesorios-title {
+    text-align: center;
+    color: #312c85;
+    margin: 30px 0 40px 0;
+    font-size: clamp(1.8rem, 5vw, 2rem);
+    padding: 0 15px;
+}
+
+.accesorios-container {
+    max-width: 1400px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.accesorio-card {
+    background: #c6d2ff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.accesorio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.accesorio-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-bottom: 3px solid #4f39f6;
+}
+
+.accesorio-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.accesorio-info h3 {
+    color: #312c85;
+    text-align: center;
+    margin: 0 0 12px 0;
+    font-size: clamp(1.1rem, 4vw, 1.2rem);
+    line-height: 1.4;
+}
+
+.accesorio-tipo {
+    color: #7c86ff;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    padding: 4px 12px;
+    background: rgba(124, 134, 255, 0.1);
+    border-radius: 20px;
+    display: inline-block;
+    align-self: center;
+}
+
+.accesorio-desc {
+    color: #432dd7;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 380px) {
+    .accesorios-title {
+        margin: 20px 0 30px 0;
+    }
+    
+    .accesorios-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 12px;
+    }
+    
+    .accesorio-info {
+        padding: 15px;
+    }
+    
+    .accesorio-info h3 {
+        font-size: 1rem;
+    }
+    
+    .accesorio-tipo {
+        font-size: 0.85rem;
+        padding: 3px 10px;
+    }
+    
+    .accesorio-desc {
+        font-size: 0.8rem;
+        -webkit-line-clamp: 2;
+    }
+}
+
+@media (min-width: 381px) and (max-width: 480px) {
+    .accesorios-container {
+        gap: 18px;
+        padding: 0 15px;
+    }
+    
+    .accesorio-info {
+        padding: 15px;
+    }
+    
+    .accesorio-desc {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 640px) {
+    .accesorios-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .accesorio-card img {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+    .accesorios-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .accesorios-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    .accesorio-desc {
+        -webkit-line-clamp: 4;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .accesorios-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1201px) {
+    .accesorios-container {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1400px;
+        gap: 30px;
+    }
+    
+    .accesorio-card img {
+        aspect-ratio: 16 / 9;
+    }
+    
+    .accesorio-desc {
+        font-size: 0.95rem;
+        -webkit-line-clamp: 4;
+    }
+}
+
+@media (min-width: 1920px) {
+    .accesorios-container {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 1800px;
+        gap: 35px;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .accesorios-title {
+        margin: 15px 0 20px 0;
+    }
+    
+    .accesorios-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .accesorio-card img {
+        aspect-ratio: 16 / 9;
+    }
+}

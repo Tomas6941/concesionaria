@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/notifications.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h2>Registro</h2>
+
+    <!-- Ocultamos los mensajes flash pero los guardamos para JS -->
+    <div style="display: none;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message" data-category="{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <form method="POST">
+        <input type="text" name="nombre" placeholder="Nombre" required><br><br>
+        <input type="email" name="email" placeholder="Email" required><br><br>
+        <input type="password" name="password" placeholder="Contraseña" required><br><br>
+        <button type="submit">Registrarse</button>
+    </form>
+
+    <!-- Mensaje informativo -->
+    <p style="font-size: 14px; color: #666; margin-top: 15px;">
+        <small>Después del registro, recibirás un email para verificar tu cuenta.</small>
+    </p>
+
+    <a href="{{ url_for('login') }}">Ir a Login</a>
+
+    <!-- Script para notificaciones -->
+    <script src="{{ url_for('static', filename='js/notifications.js') }}"></script>
+    
+    <!-- Script específico para mostrar notificación de registro -->
+    {% if request.args.get('registered') == 'true' %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showNotification('Cuenta registrada correctamente. Revisa tu Gmail y verifica tu cuenta para poder iniciar sesión.', 'success', 10000);
+        });
+    </script>
+    {% endif %}
+{% endblock %}

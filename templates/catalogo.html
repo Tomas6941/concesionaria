@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/catalogo.css') }}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="catalogo-container">
+    <h1>Catálogo de Motos</h1>
+    
+    <div class="motos-grid">
+    {% for moto in motos %}
+        <div class="moto-card">
+            <img src="{{ url_for('static', filename=moto.foto) }}" alt="{{ moto.nombre }}">
+            <div class="moto-info">
+                <h3>{{ moto.nombre }}</h3>
+                <p class="moto-cilindrada">{{ moto.cilindrada }}</p>
+                <p class="moto-descripcion">{{ moto.descripcion }}</p>
+                <button class="btn-detalles" onclick="alert('Más información sobre {{ moto.nombre }}')">Ver Detalles</button>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

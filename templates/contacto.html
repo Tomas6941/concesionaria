@@ -1,0 +1,28 @@
+{%extends "layout.html" %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Contacto</h1>
+<p>Si deseas ponerte en contacto con nosotros, puedes hacerlo a través del siguiente formulario:</p>
+<form action="/contact" method="post">
+    <label for="name">Nombre:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+    
+    <label for="email">Correo Electrónico:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+    
+    <label for="message">Mensaje:</label><br>
+    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+    
+    <input type="submit" value="Enviar">
+</form>
+
+<p>También puedes visitarnos en nuestra dirección física:</p>
+<p>Calle Principal 123, Ciudad, País</p>
+<p>Teléfono: +123 456 7890</p>
+<p>Correo Electrónico: ejemplo@gmail.com</p>
+
+{% endblock %}

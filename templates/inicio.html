@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Bienvenido a la concesionaria de motos El Gato</h1>
+<h2>¿Queres comprar una moto?</h2>
+<p>En nuestra concesionaria de motos El Gato, ofrecemos una amplia variedad de motos de las mejores marcas del mercado. Nuestro compromiso es brindar un excelente servicio al cliente, con precios competitivos y una experiencia de compra segura y satisfactoria.</p>
+<p>¡Visítanos hoy mismo y encuentra la moto de tus sueños!</p>
+<button onclick="window.location.href='/catalogo'" class="botoncatalogo">Ver catalogo</button>
+{% endblock %}

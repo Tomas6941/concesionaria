@@ -1,0 +1,111 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    width: 100%;
+    background: #eef2ff; 
+    border-bottom: 2px solid #c6d2ff; 
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #312c85; 
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 4px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #4f39f6; 
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #4f39f6; 
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-auth {
+    display: flex;
+    align-items: center;
+}
+
+.btn-login {
+    padding: 8px 16px;
+    background: #4f39f6;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-login::after {
+    display: none; 
+}
+
+.btn-login:hover {
+    background: #312c85;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #312c85;
+    font-weight: 500;
+}
+
+.profile-link:hover {
+    color: #4f39f6;
+}
+
+.nav-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4f39f6;
+}

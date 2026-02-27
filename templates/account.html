@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}Mi Cuenta{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/notifications.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Mi Cuenta</h2>
+
+<!-- Ocultamos los mensajes flash pero los guardamos para JS -->
+<div style="display: none;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message" data-category="{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<form action="{{ url_for('account') }}" method="POST" enctype="multipart/form-data">
+    <label for="foto">Foto de perfil</label>
+    <input type="file" name="foto" id="foto">
+
+    <label for="nombre">Nombre de usuario</label>
+    <input type="text" name="nombre" id="nombre" value="{{ current_user.nombre }}" required>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" name="email" id="email" value="{{ current_user.email }}" required>
+
+    <label for="password">Nueva contraseña</label>
+    <input type="password" name="password" id="password" placeholder="Dejar en blanco para no cambiar">
+
+    <button type="submit" class="btn">Actualizar</button>
+    <a href="{{ url_for('home') }}" class="btn">Volver al inicio</a>
+</form>
+
+<!-- Script para notificaciones -->
+<script src="{{ url_for('static', filename='js/notifications.js') }}"></script>
+
+<!-- Script específico para mostrar notificación de cambios -->
+{% if request.args.get('changes_sent') == 'true' %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        showNotification('Se ha enviado un enlace de verificación a tu email para confirmar los cambios. Revisa tu bandeja de entrada.', 'info', 10000);
+    });
+</script>
+{% endif %}
+
+{% if request.args.get('changes_confirmed') == 'true' %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        showNotification('¡Cambios confirmados correctamente!', 'success', 10000);
+    });
+</script>
+{% endif %}
+{% endblock %}

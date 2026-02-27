@@ -1,0 +1,26 @@
+<nav class="navbar">
+
+    <div class="nav-container">
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Inicio</a></li>
+            <li><a href="{{ url_for('catalogo') }}">Catálogo</a></li>
+            <li><a href="{{ url_for('accesorios') }}">Accesorios</a></li>
+            <li><a href="{{ url_for('informacion') }}">Información</a></li>
+            <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+        </ul>
+
+        <div class="nav-auth">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('account') }}" class="profile-link">
+                    <img src="{{ url_for('static', filename='uploads/' + (current_user.foto if current_user.foto else 'default.png')) }}"
+                         class="nav-avatar">
+                    <span>{{ current_user.nombre }}</span>
+                </a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-login">Iniciar sesión</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+</nav>

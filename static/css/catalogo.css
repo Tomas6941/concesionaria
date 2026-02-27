@@ -1,0 +1,205 @@
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/fredoka-one@latest/latin-400-normal.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/fontsource/fonts/fredoka-one@latest/latin-400-normal.woff') format('woff');
+}
+
+/* Reset mínimo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fredoka One', sans-serif;
+    background-color: #eef2ff;
+}
+
+/* Títulos */
+h1 {
+    color: #312c85;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h2 {
+    color: #432dd7;
+    text-align: center;
+    margin-top: 30px;
+}
+
+h3 {
+    color: #312c85;
+    text-align: center;
+    margin-top: 50px;
+}
+
+p {
+    color: #7c86ff;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+/* Contenedor del catálogo */
+.catalogo-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.catalogo-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: clamp(1.5rem, 5vw, 2rem); /* Solo cambié esto para que sea fluido */
+}
+
+/* Grid responsive - MISMO DISEÑO pero adaptable */
+.motos-grid {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Card - MISMOS COLORES */
+.moto-card {
+    background: #c6d2ff;  /* Color original */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.moto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen - AHORA RESPONSIVE */
+.moto-card img {
+    width: 100%;
+    height: auto; /* Cambiado de 200px fijo a auto */
+    aspect-ratio: 16/9; /* Mantiene proporción */
+    object-fit: cover;
+}
+
+/* Info */
+.moto-info {
+    padding: 20px;
+}
+
+.moto-info h3 {
+    margin-bottom: 10px;
+    font-size: clamp(1.1rem, 4vw, 1.25rem); /* Fluido */
+    color: #312c85; /* Color original */
+    margin-top: 0; /* Saco el margin-top de 50px */
+}
+
+.moto-cilindrada {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #7c86ff; /* Color original de los p */
+}
+
+.moto-descripcion {
+    font-size: 0.9rem; /* Un toque más chico para mobile */
+    color: #432dd7; /* Color original de h2 */
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Botón - MISMOS COLORES */
+.btn-detalles {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #4f39f6; /* Color original */
+    color: white;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-detalles:hover {
+    background: #432dd7; /* Color original */
+}
+
+.btn-detalles:active {
+    background: #372aac; /* Color original */
+}
+
+/* ===== SOLO MEDIA QUERIES PARA AJUSTAR DIMENSIONES ===== */
+/* NO TOCO LOS COLORES */
+
+/* Móviles chicos */
+@media (max-width: 480px) {
+    .catalogo-container {
+        padding: 0 15px;
+        margin: 20px auto;
+    }
+    
+    .motos-grid {
+        gap: 15px;
+    }
+    
+    .moto-info {
+        padding: 15px;
+    }
+    
+    .moto-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .moto-cilindrada {
+        font-size: 0.9rem;
+    }
+    
+    .moto-descripcion {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+    
+    .btn-detalles {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .motos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .moto-card img {
+        height: 200px; /* Altura fija solo en tablets/desktop */
+    }
+}
+
+/* Escritorio */
+@media (min-width: 1024px) {
+    .motos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .moto-card img {
+        height: 200px; /* Misma altura que tenías originalmente */
+    }
+    
+    .moto-info h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 1400px) {
+    .motos-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

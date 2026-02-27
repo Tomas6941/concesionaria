@@ -1,0 +1,176 @@
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/fredoka-one@latest/latin-400-normal.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/fontsource/fonts/fredoka-one@latest/latin-400-normal.woff') format('woff');
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fredoka One', sans-serif;
+  background-color: #eef2ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* TITULOS */
+h2 {
+  color: #432dd7;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  font-size: 32px;
+  text-align: center;
+}
+
+/* FORMULARIOS */
+form {
+  width: 90%;
+  max-width: 500px;
+  padding: 40px;
+  background: #e0e7ff;
+  border-radius: 14px;
+  border: 2px solid #c6d2ff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* LABELS */
+form label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #312c85;
+  font-size: 16px;
+}
+
+/* INPUTS */
+input, select {
+  padding: 16px;
+  border: 1px solid #c6d2ff;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #4f39f6;
+  box-shadow: 0 0 0 3px rgba(79, 57, 246, 0.2);
+}
+
+/* BOTONES */
+button {
+  padding: 16px;
+  background: #4f39f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+button:hover {
+  background: #432dd7;
+  transform: translateY(-2px);
+}
+
+/* LINKS */
+a {
+  margin-top: 16px;
+  color: #312c85;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+}
+
+a:hover {
+  color: #4f39f6;
+}
+
+/* AVATAR NAVBAR */
+.nav-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #4f39f6;
+  vertical-align: middle;
+}
+
+/* CONTENEDORES DE AVATAR + NOMBRE */
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #312c85;
+  text-decoration: none;
+}
+
+.profile-link span {
+  font-size: 16px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  form {
+    padding: 30px;
+  }
+
+  input, select, button {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .nav-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .profile-link span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  form {
+    padding: 20px;
+  }
+
+  input, select, button {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .nav-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .profile-link span {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/accesories.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<h1 class="accesorios-title">Accesorios</h1>
+
+<div class="accesorios-container">
+    {% for item in accesorios %}
+        <div class="accesorio-card">
+            <img src="{{ url_for('static', filename=item.foto) }}" alt="{{ item.nombre }}">
+            <div class="accesorio-info">
+                <h3>{{ item.nombre }}</h3>
+                <p class="accesorio-tipo"><strong>Tipo:</strong> {{ item.tipo }}</p>
+                <p class="accesorio-desc">{{ item.descripcion }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
