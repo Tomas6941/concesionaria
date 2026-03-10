@@ -9,6 +9,7 @@ Aplicación web desarrollada con Python (Flask) para una concesionaria de autos.
 ![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![Sqlite](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgO6HpiYlvmqumYZqwKkTg984TrbAS58f2-82GWooFExz53Z-i-KqZy4EPq4JF3fz2KxaNETNomzLCIqXl0pqg5FAhX-ozLLeyrkgltJLXOy78nHimiCwPf0pATjRchNKxSIUqvQ35ixn5Nfxp3427hikwWEiHipMlaGKCcdgoMemJZ_s5ptUItp8aGlQ/s1280/sqlite-g9d7a87b0a_1280.png)
 
 ---
 
