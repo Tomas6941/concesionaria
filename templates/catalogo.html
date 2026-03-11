@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}Catálogo de Vehículos | MotorPrime{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>Catálogo de Vehículos</h1>
+    <p>{{ autos|length }} vehículo{{ 's' if autos|length != 1 else '' }} disponible{{ 's' if autos|length != 1 else '' }}</p>
+  </div>
+</div>
+
+<div class="catalogo-layout container">
+  <aside class="filtros-sidebar">
+    <div class="filtros-header">
+      <h3>Filtrar</h3>
+      {% if filtros %}
+        <a href="{{ url_for('catalogo') }}" class="filtros-reset">Limpiar filtros</a>
+      {% endif %}
+    </div>
+    <form method="GET" action="{{ url_for('catalogo') }}" class="filtros-form">
+      <div class="filtro-group">
+        <label>Marca</label>
+        <select name="marca">
+          <option value="">Todas las marcas</option>
+          {% for m in marcas %}
+            <option value="{{ m }}" {% if filtros.get('marca') == m %}selected{% endif %}>{{ m }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="filtro-group">
+        <label>Tipo de vehículo</label>
+        <select name="tipo">
+          <option value="">Todos los tipos</option>
+          {% for t in ['sedan','suv','pickup','hatchback','coupe','van','convertible'] %}
+            <option value="{{ t }}" {% if filtros.get('tipo') == t %}selected{% endif %}>{{ t|capitalize }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="filtro-group">
+        <label>Precio máximo</label>
+        <select name="precio_max">
+          <option value="">Sin límite</option>
+          <option value="20000000" {% if filtros.get('precio_max') == '20000000' %}selected{% endif %}>hasta $20.000.000</option>
+          <option value="35000000" {% if filtros.get('precio_max') == '35000000' %}selected{% endif %}>hasta $35.000.000</option>
+          <option value="50000000" {% if filtros.get('precio_max') == '50000000' %}selected{% endif %}>hasta $50.000.000</option>
+          <option value="80000000" {% if filtros.get('precio_max') == '80000000' %}selected{% endif %}>hasta $80.000.000</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary w-full">Aplicar filtros</button>
+    </form>
+  </aside>
+
+  <div class="catalogo-main">
+    {% if autos %}
+    <div class="autos-grid autos-grid--catalog">
+      {% for auto in autos %}
+      <article class="auto-card">
+        <a href="{{ url_for('auto_detalle', id=auto.id) }}" class="auto-card-link">
+          <div class="auto-card-img">
+            {% if auto.imagen_url %}
+              <img src="{{ auto.imagen_url }}" alt="{{ auto.marca }} {{ auto.modelo }}" loading="lazy">
+            {% else %}
+              <div class="auto-card-img-placeholder">🚗</div>
+            {% endif %}
+            <span class="auto-tipo-badge">{{ auto.tipo|capitalize }}</span>
+            {% if auto.destacado %}
+              <span class="auto-dest-badge">Destacado</span>
+            {% endif %}
+          </div>
+          <div class="auto-card-body">
+            <div class="auto-card-head">
+              <span class="auto-marca">{{ auto.marca }}</span>
+              <span class="auto-anio">{{ auto.anio }}</span>
+            </div>
+            <h3 class="auto-modelo">{{ auto.modelo }}</h3>
+            <div class="auto-specs">
+              <span>{{ '{:,}'.format(auto.km) }} km</span>
+              <span>{{ auto.transmision|capitalize }}</span>
+              <span>{{ auto.combustible|capitalize }}</span>
+            </div>
+            <div class="auto-card-footer">
+              <div class="auto-precio">
+                <span class="precio-label">Precio</span>
+                <span class="precio-valor">$ {{ '{:,.0f}'.format(auto.precio) }}</span>
+              </div>
+              <span class="btn-card">Ver más →</span>
+            </div>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <h3>No encontramos vehículos con esos filtros</h3>
+      <p>Intentá con otros criterios de búsqueda.</p>
+      <a href="{{ url_for('catalogo') }}" class="btn btn-outline">Ver todos los vehículos</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

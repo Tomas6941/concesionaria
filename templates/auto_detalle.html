@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}{{ auto.marca }} {{ auto.modelo }} {{ auto.anio }} | MotorPrime{% endblock %}
+{% block content %}
+
+<div class="detalle-page container">
+  <div class="breadcrumb">
+    <a href="{{ url_for('index') }}">Inicio</a>
+    <span>/</span>
+    <a href="{{ url_for('catalogo') }}">Catálogo</a>
+    <span>/</span>
+    <span>{{ auto.marca }} {{ auto.modelo }}</span>
+  </div>
+
+  <div class="detalle-grid">
+    <div class="detalle-media">
+      {% if auto.imagen_url %}
+        <img src="{{ auto.imagen_url }}" alt="{{ auto.marca }} {{ auto.modelo }}" class="detalle-img">
+      {% else %}
+        <div class="detalle-img-placeholder">🚗</div>
+      {% endif %}
+    </div>
+
+    <div class="detalle-info">
+      <div class="detalle-badges">
+        <span class="auto-tipo-badge">{{ auto.tipo|capitalize }}</span>
+        {% if auto.destacado %}<span class="auto-dest-badge">Destacado</span>{% endif %}
+      </div>
+      <div class="detalle-marca">{{ auto.marca }}</div>
+      <h1 class="detalle-titulo">{{ auto.modelo }}</h1>
+      <div class="detalle-anio">{{ auto.anio }}</div>
+
+      <div class="detalle-specs-grid">
+        <div class="spec-item">
+          <span class="spec-label">Kilómetros</span>
+          <span class="spec-val">{{ '{:,}'.format(auto.km) }} km</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Transmisión</span>
+          <span class="spec-val">{{ auto.transmision|capitalize }}</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Combustible</span>
+          <span class="spec-val">{{ auto.combustible|capitalize }}</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Color</span>
+          <span class="spec-val">{{ auto.color }}</span>
+        </div>
+      </div>
+
+      {% if auto.descripcion %}
+      <div class="detalle-descripcion">
+        <h3>Descripción</h3>
+        <p>{{ auto.descripcion }}</p>
+      </div>
+      {% endif %}
+
+      <div class="detalle-precio-block">
+        <div class="detalle-precio">
+          <span>Precio</span>
+          <strong>$ {{ '{:,.0f}'.format(auto.precio) }}</strong>
+        </div>
+        <div class="detalle-acciones">
+          <a href="{{ url_for('test_drive') }}?auto_id={{ auto.id }}" class="btn btn-primary btn-lg">Pedir test drive</a>
+          <a href="{{ url_for('contacto') }}" class="btn btn-outline btn-lg">Consultar</a>
+        </div>
+        <div class="detalle-contacto-rapido">
+          <p>📞 <a href="tel:01145678900">(011) 4567-8900</a></p>
+          <p>💬 <a href="https://wa.me/5491145678900?text=Consulta%20por%20{{ auto.marca }}%20{{ auto.modelo }}" target="_blank">Escribir por WhatsApp</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if relacionados %}
+  <div class="relacionados">
+    <h2>También te puede interesar</h2>
+    <div class="autos-grid">
+      {% for r in relacionados %}
+      <article class="auto-card">
+        <a href="{{ url_for('auto_detalle', id=r.id) }}" class="auto-card-link">
+          <div class="auto-card-img">
+            {% if r.imagen_url %}
+              <img src="{{ r.imagen_url }}" alt="{{ r.marca }} {{ r.modelo }}" loading="lazy">
+            {% else %}
+              <div class="auto-card-img-placeholder">🚗</div>
+            {% endif %}
+          </div>
+          <div class="auto-card-body">
+            <div class="auto-card-head">
+              <span class="auto-marca">{{ r.marca }}</span>
+              <span class="auto-anio">{{ r.anio }}</span>
+            </div>
+            <h3 class="auto-modelo">{{ r.modelo }}</h3>
+            <div class="auto-card-footer">
+              <div class="auto-precio">
+                <span class="precio-valor">$ {{ '{:,.0f}'.format(r.precio) }}</span>
+              </div>
+              <span class="btn-card">Ver →</span>
+            </div>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

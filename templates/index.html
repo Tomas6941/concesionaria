@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% block title %}MotorPrime - Concesionaria Oficial | Autos Nuevos y Usados{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      <span>Concesionaria Oficial · Toyota · Ford · BMW</span>
+    </div>
+    <h1 class="hero-title">El auto que<br><em>imaginás</em> <br>acá lo encontrás.</h1>
+    <p class="hero-sub">Más de 200 vehículos disponibles. Financiación a medida, entrega inmediata.</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('catalogo') }}" class="btn btn-primary btn-lg">Ver catálogo</a>
+      <a href="{{ url_for('test_drive') }}" class="btn btn-outline btn-lg">Agendá un test drive</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">+200</span><span class="stat-label">Vehículos</span></div>
+      <div class="stat"><span class="stat-num">25</span><span class="stat-label">Años de trayectoria</span></div>
+      <div class="stat"><span class="stat-num">+5000</span><span class="stat-label">Clientes satisfechos</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scrolleá</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section class="marcas-strip">
+  <div class="marcas-strip-inner">
+    <div class="marcas-strip-group">
+      <span class="marca-item">Toyota</span>
+      <span class="marca-item">Ford</span>
+      <span class="marca-item">BMW</span>
+      <span class="marca-item">Mercedes-Benz</span>
+      <span class="marca-item">Volkswagen</span>
+      <span class="marca-item">Honda</span>
+      <span class="marca-item">Chevrolet</span>
+      <span class="marca-item">Audi</span>
+    </div>
+    <div class="marcas-strip-group" aria-hidden="true">
+      <span class="marca-item">Toyota</span>
+      <span class="marca-item">Ford</span>
+      <span class="marca-item">BMW</span>
+      <span class="marca-item">Mercedes-Benz</span>
+      <span class="marca-item">Volkswagen</span>
+      <span class="marca-item">Honda</span>
+      <span class="marca-item">Chevrolet</span>
+      <span class="marca-item">Audi</span>
+    </div>
+  </div>
+</section>
+
+<section class="section destacados">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Selección Premium</span>
+      <h2 class="section-title">Vehículos destacados</h2>
+      <p>Los autos más buscados del mes, listos para entrega inmediata.</p>
+    </div>
+    <div class="autos-grid">
+      {% for auto in destacados %}
+      <article class="auto-card">
+        <a href="{{ url_for('auto_detalle', id=auto.id) }}" class="auto-card-link">
+          <div class="auto-card-img">
+            {% if auto.imagen_url %}
+              <img src="{{ auto.imagen_url }}" alt="{{ auto.marca }} {{ auto.modelo }}" loading="lazy">
+            {% else %}
+              <div class="auto-card-img-placeholder">🚗</div>
+            {% endif %}
+            <span class="auto-tipo-badge">{{ auto.tipo|capitalize }}</span>
+          </div>
+          <div class="auto-card-body">
+            <div class="auto-card-head">
+              <span class="auto-marca">{{ auto.marca }}</span>
+              <span class="auto-anio">{{ auto.anio }}</span>
+            </div>
+            <h3 class="auto-modelo">{{ auto.modelo }}</h3>
+            <div class="auto-specs">
+              <span>{{ '{:,}'.format(auto.km) }} km</span>
+              <span>{{ auto.transmision|capitalize }}</span>
+              <span>{{ auto.combustible|capitalize }}</span>
+            </div>
+            <div class="auto-card-footer">
+              <div class="auto-precio">
+                <span class="precio-label">Precio</span>
+                <span class="precio-valor">$ {{ '{:,.0f}'.format(auto.precio) }}</span>
+              </div>
+              <span class="btn-card">Ver más →</span>
+            </div>
+          </div>
+        </a>
+      </article>
+      {% else %}
+      <div class="empty-state">
+        <p>Cargando vehículos... Asegurate de tener la base de datos configurada.</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="section-cta">
+      <a href="{{ url_for('catalogo') }}" class="btn btn-outline">Ver todos los vehículos</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark por-que">
+  <div class="container">
+    <div class="section-header light">
+      <span class="section-tag">¿Por qué elegirnos?</span>
+      <h2 class="section-title">La diferencia MotorPrime</h2>
+    </div>
+    <div class="ventajas-grid">
+      <div class="ventaja-card">
+        <div class="ventaja-icon">🛡️</div>
+        <h3>Garantía total</h3>
+        <p>Todos nuestros vehículos cuentan con garantía de fábrica y revisión técnica certificada de 120 puntos.</p>
+      </div>
+      <div class="ventaja-card">
+        <div class="ventaja-icon">💳</div>
+        <h3>Financiación flexible</h3>
+        <p>Hasta 84 cuotas con tasa preferencial. Planes de financiación adaptados a tu situación.</p>
+      </div>
+      <div class="ventaja-card">
+        <div class="ventaja-icon">🔄</div>
+        <h3>Tu usado como parte de pago</h3>
+        <p>Tasamos tu vehículo al mejor precio del mercado y lo aplicamos directamente a tu compra.</p>
+      </div>
+      <div class="ventaja-card">
+        <div class="ventaja-icon">📋</div>
+        <h3>Documentación completa</h3>
+        <p>Transferencia, seguros, patentamiento y toda la gestión sin costos ocultos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section test-drive-cta">
+  <div class="container">
+    <div class="cta-block">
+      <div class="cta-text">
+        <span class="section-tag">Experiencia de primera mano</span>
+        <h2>Antes de comprar,<br><em>manejalo vos.</em></h2>
+        <p>Reservá un test drive sin costo y descubrí cómo se siente el auto que te gustó.</p>
+      </div>
+      <div class="cta-action">
+        <a href="{{ url_for('test_drive') }}" class="btn btn-primary btn-xl">Reservar test drive gratis</a>
+        <p class="cta-note">Sin cargo · Sin compromiso · En nuestras instalaciones</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonios">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Clientes</span>
+      <h2 class="section-title">Lo que dicen de nosotros</h2>
+    </div>
+    <div class="testimonios-grid">
+      <div class="testimonio-card">
+        <div class="testimonio-stars">★★★★★</div>
+        <p>"Compré mi Toyota Hilux en MotorPrime y la experiencia fue impecable. El asesoramiento fue claro y el proceso de financiación muy ágil."</p>
+        <div class="testimonio-autor">
+          <div class="autor-avatar">MR</div>
+          <div><strong>Martín R.</strong><span>Empresario, Mendoza</span></div>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <div class="testimonio-stars">★★★★★</div>
+        <p>"Me tasaron el usado al mejor precio que encontré en el mercado. Aplicaron el monto a la compra de mi BMW X5. Altamente recomendable."</p>
+        <div class="testimonio-autor">
+          <div class="autor-avatar">SL</div>
+          <div><strong>Sofía L.</strong><span>Médica, Buenos Aires</span></div>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <div class="testimonio-stars">★★★★★</div>
+        <p>"El test drive del Mustang fue una experiencia increíble. El equipo de ventas no te presiona. Terminé comprando ese mismo día."</p>
+        <div class="testimonio-autor">
+          <div class="autor-avatar">JG</div>
+          <div><strong>Juan G.</strong><span>Ingeniero, Córdoba</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

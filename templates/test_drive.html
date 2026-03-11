@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Test Drive Gratis | MotorPrime{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>Reservá tu Test Drive</h1>
+    <p>Gratis · Sin compromiso · En nuestras instalaciones</p>
+  </div>
+</div>
+
+<div class="form-page container">
+  <div class="form-layout">
+    <div class="form-main">
+      <div class="form-card">
+        <h2>Completá el formulario</h2>
+        <p class="form-subtitle">Te contactaremos para confirmar la fecha y horario.</p>
+        <form method="POST" action="{{ url_for('test_drive') }}" class="form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="tu@email.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+54 11 1234-5678">
+            </div>
+            <div class="form-group">
+              <label for="fecha">Fecha preferida *</label>
+              <input type="date" id="fecha" name="fecha" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="auto_id">Vehículo de interés *</label>
+            <select id="auto_id" name="auto_id" required>
+              <option value="">Seleccioná un vehículo</option>
+              {% for auto in autos %}
+                <option value="{{ auto.id }}" {% if request.args.get('auto_id') == auto.id|string %}selected{% endif %}>
+                  {{ auto.marca }} {{ auto.modelo }} ({{ auto.anio }})
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje adicional</label>
+            <textarea id="mensaje" name="mensaje" rows="3" placeholder="Contanos algo más sobre lo que buscás..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-full">Solicitar test drive</button>
+        </form>
+      </div>
+    </div>
+    <div class="form-sidebar">
+      <div class="info-card">
+        <h3>¿Cómo funciona?</h3>
+        <div class="steps">
+          <div class="step"><span class="step-num">1</span><div><strong>Completá el formulario</strong><p>Elegí el auto y la fecha que más te convenga.</p></div></div>
+          <div class="step"><span class="step-num">2</span><div><strong>Te confirmamos</strong><p>Un asesor te llama o escribe para confirmar el turno.</p></div></div>
+          <div class="step"><span class="step-num">3</span><div><strong>Manejá el auto</strong><p>Vení a nuestra concesionaria y viví la experiencia.</p></div></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>Contacto directo</h3>
+        <p>📞 (011) 4567-8900</p>
+        <p>💬 WhatsApp: +54 9 11 4567-8900</p>
+        <p>📍 Av. del Libertador 1234, CABA</p>
+        <p>🕐 Lun–Sáb: 9:00–19:00</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

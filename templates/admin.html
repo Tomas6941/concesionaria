@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}Panel Admin | MotorPrime{% endblock %}
+{% block content %}
+
+<div class="admin-page">
+  <div class="admin-header">
+    <div class="container">
+      <h1>Panel de Administración</h1>
+      <div class="admin-actions">
+        <a href="{{ url_for('admin_auto_nuevo') }}" class="btn btn-primary">+ Agregar vehículo</a>
+        <a href="{{ url_for('admin_logout') }}" class="btn btn-outline">Cerrar sesión</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="admin-stats">
+      <div class="admin-stat"><span class="as-num">{{ stats.get('autos', 0) }}</span><span>Vehículos activos</span></div>
+      <div class="admin-stat"><span class="as-num">{{ stats.get('test_drives', 0) }}</span><span>Test drives</span></div>
+      <div class="admin-stat"><span class="as-num">{{ stats.get('contactos', 0) }}</span><span>Consultas</span></div>
+    </div>
+
+    <div class="admin-section">
+      <h2>Vehículos en catálogo</h2>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th><th>Marca</th><th>Modelo</th><th>Año</th><th>Precio</th><th>Km</th><th>Destacado</th><th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for auto in autos %}
+            <tr>
+              <td>{{ auto.id }}</td>
+              <td>{{ auto.marca }}</td>
+              <td>{{ auto.modelo }}</td>
+              <td>{{ auto.anio }}</td>
+              <td>$ {{ '{:,.0f}'.format(auto.precio) }}</td>
+              <td>{{ '{:,}'.format(auto.km) }}</td>
+              <td>{{ '⭐' if auto.destacado else '—' }}</td>
+              <td class="td-acciones">
+                <a href="{{ url_for('auto_detalle', id=auto.id) }}" class="btn-admin-sm">Ver</a>
+                <a href="{{ url_for('admin_auto_editar', id=auto.id) }}" class="btn-admin-sm">Editar</a>
+                <form method="POST" action="{{ url_for('admin_auto_eliminar', id=auto.id) }}" style="display:inline" onsubmit="return confirm('¿Eliminar este vehículo del catálogo?')">
+                  <button type="submit" class="btn-admin-sm btn-admin-danger">Ocultar</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-two-col">
+      <div class="admin-section">
+        <h2>Últimos test drives</h2>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Nombre</th><th>Auto</th><th>Fecha</th><th>Estado</th></tr></thead>
+            <tbody>
+              {% for td in test_drives %}
+              <tr>
+                <td>{{ td.nombre }}</td>
+                <td>{{ td.marca or '' }} {{ td.modelo or '' }}</td>
+                <td>{{ td.fecha }}</td>
+                <td><span class="status-badge status-{{ td.estado }}">{{ td.estado|capitalize }}</span></td>
+              </tr>
+              {% else %}
+              <tr><td colspan="4" class="empty-row">Sin solicitudes todavía</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="admin-section">
+        <h2>Últimas consultas</h2>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Nombre</th><th>Asunto</th><th>Email</th></tr></thead>
+            <tbody>
+              {% for c in contactos %}
+              <tr>
+                <td>{{ c.nombre }}</td>
+                <td>{{ c.asunto or 'Sin asunto' }}</td>
+                <td>{{ c.email }}</td>
+              </tr>
+              {% else %}
+              <tr><td colspan="3" class="empty-row">Sin consultas todavía</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

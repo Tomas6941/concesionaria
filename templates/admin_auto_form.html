@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Editar' if auto else 'Nuevo' }} Vehículo | Admin MotorPrime{% endblock %}
+{% block content %}
+
+<div class="admin-page">
+  <div class="admin-header">
+    <div class="container">
+      <h1>{{ 'Editar' if auto else 'Agregar' }} Vehículo</h1>
+      <a href="{{ url_for('admin_panel') }}" class="btn btn-outline">← Volver al panel</a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="form-card form-card--admin">
+      <form method="POST" class="form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Marca *</label>
+            <input type="text" name="marca" value="{{ auto.marca if auto else '' }}" required>
+          </div>
+          <div class="form-group">
+            <label>Modelo *</label>
+            <input type="text" name="modelo" value="{{ auto.modelo if auto else '' }}" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Año *</label>
+            <input type="number" name="anio" value="{{ auto.anio if auto else '' }}" min="1990" max="2025" required>
+          </div>
+          <div class="form-group">
+            <label>Precio ($ ARS) *</label>
+            <input type="number" name="precio" value="{{ auto.precio if auto else '' }}" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Kilómetros</label>
+            <input type="number" name="km" value="{{ auto.km if auto else '0' }}">
+          </div>
+          <div class="form-group">
+            <label>Color</label>
+            <input type="text" name="color" value="{{ auto.color if auto else '' }}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tipo</label>
+            <select name="tipo">
+              {% for t in ['sedan','suv','pickup','hatchback','coupe','van','convertible'] %}
+                <option value="{{ t }}" {% if auto and auto.tipo == t %}selected{% endif %}>{{ t|capitalize }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Transmisión</label>
+            <select name="transmision">
+              <option value="manual" {% if auto and auto.transmision == 'manual' %}selected{% endif %}>Manual</option>
+              <option value="automatica" {% if auto and auto.transmision == 'automatica' %}selected{% endif %}>Automática</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Combustible</label>
+          <select name="combustible">
+            {% for c in ['nafta','diesel','hibrido','electrico'] %}
+              <option value="{{ c }}" {% if auto and auto.combustible == c %}selected{% endif %}>{{ c|capitalize }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label>URL de imagen</label>
+          <input type="url" name="imagen_url" value="{{ auto.imagen_url if auto else '' }}" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label>Descripción</label>
+          <textarea name="descripcion" rows="4">{{ auto.descripcion if auto else '' }}</textarea>
+        </div>
+        <div class="form-row form-checkboxes">
+          <label class="checkbox-label">
+            <input type="checkbox" name="disponible" {% if not auto or auto.disponible %}checked{% endif %}> Disponible en catálogo
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="destacado" {% if auto and auto.destacado %}checked{% endif %}> Marcar como destacado
+          </label>
+        </div>
+        <div class="form-row">
+          <button type="submit" class="btn btn-primary btn-lg">{{ 'Actualizar' if auto else 'Agregar' }} vehículo</button>
+          <a href="{{ url_for('admin_panel') }}" class="btn btn-outline btn-lg">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

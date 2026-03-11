@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Financiación | MotorPrime{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>Financiación</h1>
+    <p>Planes a medida para que el auto de tus sueños no espere</p>
+  </div>
+</div>
+
+<div class="financiacion-page container">
+  <div class="planes-grid">
+    <div class="plan-card">
+      <div class="plan-nombre">Plan Inicial</div>
+      <div class="plan-desc">Ideal para primeros compradores</div>
+      <ul class="plan-features">
+        <li>Hasta 36 cuotas fijas</li>
+        <li>Anticipo desde el 20%</li>
+        <li>Tasa preferencial TNA</li>
+        <li>Sin gastos de otorgamiento</li>
+      </ul>
+      <a href="{{ url_for('contacto') }}" class="btn btn-outline w-full">Consultar</a>
+    </div>
+    <div class="plan-card plan-card--featured">
+      <div class="plan-badge">Más elegido</div>
+      <div class="plan-nombre">Plan Premium</div>
+      <div class="plan-desc">La mejor relación cuota-valor</div>
+      <ul class="plan-features">
+        <li>Hasta 60 cuotas fijas</li>
+        <li>Anticipo desde el 30%</li>
+        <li>Tasa bonificada</li>
+        <li>Seguro primer año incluido</li>
+        <li>Gestión de patentamiento</li>
+      </ul>
+      <a href="{{ url_for('contacto') }}" class="btn btn-primary w-full">Consultar</a>
+    </div>
+    <div class="plan-card">
+      <div class="plan-nombre">Plan Ejecutivo</div>
+      <div class="plan-desc">Máxima flexibilidad</div>
+      <ul class="plan-features">
+        <li>Hasta 84 cuotas</li>
+        <li>Anticipo personalizable</li>
+        <li>Cuota balón disponible</li>
+        <li>Seguro incluido 2 años</li>
+        <li>Asesor personal dedicado</li>
+      </ul>
+      <a href="{{ url_for('contacto') }}" class="btn btn-outline w-full">Consultar</a>
+    </div>
+  </div>
+
+  <div class="financiacion-info">
+    <h2>Tu usado como parte de pago</h2>
+    <p>Tasamos tu vehículo sin costo y aplicamos el valor directamente como anticipo. Trabajamos con todas las marcas y modelos.</p>
+    <a href="{{ url_for('contacto') }}" class="btn btn-primary">Tasá tu usado gratis</a>
+  </div>
+
+  <div class="financiacion-nota">
+    <p><strong>Nota:</strong> Los planes y tasas están sujetos a verificación crediticia y pueden variar. Las condiciones definitivas se informan al momento de la solicitud. Sujeto a aprobación de entidades financieras.</p>
+  </div>
+</div>
+
+{% endblock %}
